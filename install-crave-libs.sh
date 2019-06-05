@@ -57,6 +57,9 @@ if [[ "$OS" == "osx" ]];then
     
     echo "Share directory..."
     cp -rf ${BUILD_DIR}/share /usr/local/crave/share
+
+    echo "Libraries directory..."
+    cp -rf ${BUILD_DIR}/lib/* /usr/local/crave/lib
     
     echo "Dependent libraries (boolector and lingeling)..."
     cp -f ${DEPS_DIR}/boolector-2.2.0/lib/libboolector.dylib ${DEPS_DIR}/lingeling-ayv-86bf266-140429/lib/liblingeling.dylib /usr/local/crave/lib
@@ -69,8 +72,8 @@ else
     echo "Assuming Linux OS"
     if [[ ! -d "/quadric/usr/local/crave" ]];then
 	echo "/quadric/usr/local/crave does not exist. Creating it..."
-# This will create both crave and crave/lib, which is needed below
-mkdir -p /quadric/usr/local/crave/lib
+	# This will create both crave and crave/lib, which is needed below
+	mkdir -p /quadric/usr/local/crave/lib
     fi
 
     echo "Include headers..."
@@ -82,13 +85,16 @@ mkdir -p /quadric/usr/local/crave/lib
     echo "Share directory..."
     cp -rf ${BUILD_DIR}/share /quadric/usr/local/crave/share
     
+    echo "Libraries directory..."
+    cp -rf ${BUILD_DIR}/lib/* /quadric/usr/local/crave/lib
+    
     echo "Dependent libraries (boolector and lingeling)..."
     cp -f ${DEPS_DIR}/boolector-2.2.0/lib/libboolector.so ${DEPS_DIR}/lingeling-ayv-86bf266-140429/lib/liblingeling.so /quadric/usr/local/crave/lib
     
     echo "minisat library"
-    cp -f ${DEPS_DIR}/minisat-git/lib/libminisat.2.1.0.dylib /quadric/usr/local/crave/lib
-    cp -f ${DEPS_DIR}/minisat-git/lib/libminisat.2.dylib /quadric/usr/local/crave/lib
-    rm -f /quadric/usr/local/crave/lib/libminisat.dylib; ln -s /quadric/usr/local/crave/lib/libminisat.2.dylib /quadric/usr/local/crave/lib/libminisat.dylib
+    cp -f ${DEPS_DIR}/minisat-git/lib/libminisat.so.2.1.0 /quadric/usr/local/crave/lib
+    cp -f ${DEPS_DIR}/minisat-git/lib/libminisat.so.2 /quadric/usr/local/crave/lib
+    rm -f /quadric/usr/local/crave/lib/libminisat.so; ln -s /quadric/usr/local/crave/lib/libminisat.so.2 /quadric/usr/local/crave/lib/libminisat.so
 fi
 
 echo "CRAVE libraries installed"
