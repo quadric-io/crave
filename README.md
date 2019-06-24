@@ -7,7 +7,7 @@ This library is needed to run the random testbenches used in the compute fabric 
  Compiling the Library
 ----------------------
 
-This assumes that you have already set up your compute-fabric environment as indicated [here](https://github.com/quadric-io/compute-fabric/README.md).
+This assumes that you have already set up your compute-fabric environment as indicated [here](https://github.com/quadric-io/compute-fabric/blob/devel/README.md).
 Once your compute-fabric enviornment has been set up, follow the instructions below to install CRAVE:
 
 1. Create a new directory and change into it.
