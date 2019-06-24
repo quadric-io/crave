@@ -11,7 +11,7 @@ This assumes that you have already set up your compute-fabric environment as ind
 Once your compute-fabric enviornment has been set up, follow the instructions below to install CRAVE:
 
 1. Create a new directory and change into it.
-2. Clone the CRAVE repo: `git clone git@github.com:qudaric-io/crave.git`
+2. Clone the CRAVE repo: `git clone git@github.com:quadric-io/crave.git`
 3. `cd crave`
 4. `git submodule update --init --recursive`
 5. Set the following environment variables:
