@@ -22,7 +22,9 @@ GLOG_ROOT=no/glog/necessary
 CRAVE_SOLVERS=boolector
 ```
 Note: you might need to install boost version 1.55 if you don't have it (`brew install boost@1.55` installs this version). Any other version currently does not work with CRAVE.
+
 6. `make`
 7. `make test` (You should see all tests passing)
-8. Run `install-crave-libs.sh` to install the libraries in your local area.
+8. `make install`
+9. Run `sudo install-crave-libs.sh --source-dir <path-to-the-source>` to install the libraries in your local area.
 
