@@ -72,9 +72,11 @@ ConstraintPtr ConstraintManager::makeConstraint(std::string const& name, int c_i
     throw std::runtime_error(name + "Constraint already exists.");
   }
 
+  //LOG(INFO) << "Visiting the node";
   GetSupportSetVisitor gssv;
   n->visit(&gssv);
 
+  //LOG(INFO) << "Getting the constraint pointer";
   ConstraintPtr c;
 
   if (boost::dynamic_pointer_cast<ForEach>(n) != 0) {
@@ -85,13 +87,18 @@ ConstraintPtr ConstraintManager::makeConstraint(std::string const& name, int c_i
     c = std::make_shared<UserConstraint>(c_id, n, name, gssv.getSupportVars(), soft, cover);
   }
 
+  //LOG(INFO) << "Checking for unsupported behaviors";
   assert(!c->isSoft() || !c->isCover());              // soft cover constraint not defined/supported yet
   assert(!c->isVectorConstraint() || !c->isCover());  // cover vector constraint not defined/supported yet
 
+  //LOG(INFO) << "Estimating complexity (only for non-vector constraints - Look for more messages on this).";
   if (!c->isVectorConstraint()) {
+    //LOG(INFO) << "Not a vector constraint. Estimating complexity.";
     ComplexityEstimationVisitor cev;
     c->complexity_ = cev.getComplexityEstimation(*n);
+    //LOG(INFO) << "After complexity estimation";
   }
+  //LOG(INFO) << "Done with complexity estimation";
 
   changed_ = true;
   constraints_.push_back(c);

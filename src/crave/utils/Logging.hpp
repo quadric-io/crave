@@ -27,7 +27,7 @@ extern int logging_severity;
     LogStream(severity) << std::endl; \
     if (severity == crave::FATAL) \
       throw std::runtime_error("Execution terminated by LOG(FATAL), log message is lost"); \
-    LogStream(severity)
+    LogStream(severity) << std::endl
 
 #define CHECK(condition) if (!(condition)) throw std::runtime_error("check failed: " #condition)
 

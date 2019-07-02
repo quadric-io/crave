@@ -50,19 +50,26 @@ if [[ "$OS" == "osx" ]];then
     fi
     
     echo "Include headers..."
+    rm -rf /usr/local/crave/include
     cp -rf ${BUILD_DIR}/include /usr/local/crave/include
     cp -rf ${DEPS_DIR}/boolector-2.2.0/include/* /usr/local/crave/include
     cp -rf ${DEPS_DIR}/minisat-git/include/* /usr/local/crave/include
     cp -rf ${DEPS_DIR}/lingeling-ayv-86bf266-140429/include/* /usr/local/crave/include
     
     echo "Share directory..."
+    rm -rf /usr/local/crave/share
     cp -rf ${BUILD_DIR}/share /usr/local/crave/share
 
     echo "Libraries directory..."
-    cp -rf ${BUILD_DIR}/lib/* /usr/local/crave/lib
+    rm -rf /usr/local/crave/lib
+    cp -rf ${BUILD_DIR}/lib /usr/local/crave/lib
     
     echo "Dependent libraries (boolector and lingeling)..."
     cp -f ${DEPS_DIR}/boolector-2.2.0/lib/libboolector.dylib ${DEPS_DIR}/lingeling-ayv-86bf266-140429/lib/liblingeling.dylib /usr/local/crave/lib
+    rm -f /usr/local/lib/libboolector.dylib
+    rm -f /usr/local/lib/liblingeling.dylib
+    ln -s /usr/local/crave/lib/libboolector.dylib /usr/local/lib/libboolector.dylib
+    ln -s /usr/local/crave/lib/liblingeling.dylib /usr/local/lib/liblingeling.dylib
     
     echo "minisat library"
     cp -f ${DEPS_DIR}/minisat-git/lib/libminisat.2.1.0.dylib /usr/local/crave/lib
@@ -77,19 +84,26 @@ else
     fi
 
     echo "Include headers..."
+    rm -rf /quadric/usr/local/crave/include
     cp -rf ${BUILD_DIR}/include /quadric/usr/local/crave/include
     cp -rf ${DEPS_DIR}/boolector-2.2.0/include/* /quadric//usr/local/crave/include
     cp -rf ${DEPS_DIR}/minisat-git/include/* /quadric//usr/local/crave/include
     cp -rf ${DEPS_DIR}/lingeling-ayv-86bf266-140429/include/* /quadric//usr/local/crave/include
     
     echo "Share directory..."
+    rm -rf /quadric/usr/local/crave/share
     cp -rf ${BUILD_DIR}/share /quadric/usr/local/crave/share
     
     echo "Libraries directory..."
-    cp -rf ${BUILD_DIR}/lib/* /quadric/usr/local/crave/lib
+    rm -rf /quadric/usr/local/crave/lib
+    cp -rf ${BUILD_DIR}/lib /quadric/usr/local/crave/lib
     
     echo "Dependent libraries (boolector and lingeling)..."
     cp -f ${DEPS_DIR}/boolector-2.2.0/lib/libboolector.so ${DEPS_DIR}/lingeling-ayv-86bf266-140429/lib/liblingeling.so /quadric/usr/local/crave/lib
+    #rm -f /usr/local/lib/libboolector.dylib
+    #rm -f /usr/local/lib/liblingeling.dylib
+    #ln -s /usr/local/crave/lib/libboolector.dylib /usr/local/lib/libboolector.dylib
+    #ln -s /usr/local/crave/lib/liblingeling.dylib /usr/local/lib/liblingeling.dylib
     
     echo "minisat library"
     cp -f ${DEPS_DIR}/minisat-git/lib/libminisat.so.2.1.0 /quadric/usr/local/crave/lib
